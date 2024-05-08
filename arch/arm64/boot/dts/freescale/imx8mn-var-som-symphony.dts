@@ -332,6 +332,12 @@
 			line-name = "enet_sel";
 		};
 	};
+	/* DS1337 RTC module */
+	rtc@68 {
+		status = "okay";
+		compatible = "dallas,ds1337";
+		reg = <0x68>;
+	};
 };
 
 &i2c3 {
@@ -349,13 +355,6 @@
 		touchscreen-inverted-x;
 		touchscreen-inverted-y;
 		wakeup-source;
-	};
-
-	/* DS1337 RTC module */
-	rtc@68 {
-		status = "okay";
-		compatible = "dallas,ds1337";
-		reg = <0x68>;
 	};
 };
 
