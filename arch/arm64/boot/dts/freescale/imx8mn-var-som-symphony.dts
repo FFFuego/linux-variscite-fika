@@ -18,23 +18,23 @@
 		stdout-path = &uart4;
 	};
 
-#if defined(METICULOUS_BACKLIGHT_PWM)
+// #if defined(METICULOUS_BACKLIGHT_PWM)
 	backlight: backlight {
 		compatible = "pwm-backlight";
 		pwms = <&pwm2 0 500000 0>;
 		status = "okay";
 	};
-#elseif defined(METICULOUS_BACKLIGHT_GPIO)
-	backlight: backlight {
-		compatible = "gpio-backlight";
-		gpios = <&gpio5 20 GPIO_ACTIVE_HIGH>;
-		status = "okay";
-		pinctrl-0 = <&pinctrl_mipi_dsi_en>;
-		pinctrl-names = "default";
-		default-on;
-	};
+// #elseif defined(METICULOUS_BACKLIGHT_GPIO)
+// 	backlight: backlight {
+// 		compatible = "gpio-backlight";
+// 		gpios = <&gpio5 20 GPIO_ACTIVE_HIGH>;
+// 		status = "okay";
+// 		pinctrl-0 = <&pinctrl_mipi_dsi_en>;
+// 		pinctrl-names = "default";
+// 		default-on;
+// 	};
 
-#endif
+// #endif
 	gpio-keys {
 		compatible = "gpio-keys";
 		status = "okay";
@@ -117,20 +117,20 @@
 		>;
 	};
 	
-#ifdef METICULOUS_BACKLIGHT_GPIO
+// #ifdef METICULOUS_BACKLIGHT_GPIO
 
-	pinctrl_mipi_dsi_en: mipi_dsi_en {
-		fsl,pins = <
-			MX8MN_IOMUXC_I2C4_SCL_GPIO5_IO20		0x6
-		>;
-	};
-#elseie METICULOUS_BACKLIGHT_PWM
+// 	pinctrl_mipi_dsi_en: mipi_dsi_en {
+// 		fsl,pins = <
+// 			MX8MN_IOMUXC_I2C4_SCL_GPIO5_IO20		0x6
+// 		>;
+// 	};
+// #elseie METICULOUS_BACKLIGHT_PWM
 	pinctrl_mipi_dsi_en_pwm2: pwm2grp {
 		fsl,pins = <
 			MX8MN_IOMUXC_I2C4_SCL_PWM2_OUT		0x06
 		>;
 	};
-#endif
+// #endif
 
 	pinctrl_mipi_dsi_rst: mipi_dsi_rst {
 		fsl,pins = <
@@ -404,9 +404,9 @@
 		reset-gpios = <&gpio5 21 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_mipi_dsi_rst>;
-#if defined(METICULOUS_BACKLIGHT_PWM) || defined(METICULOUS_BACKLIGHT_GPIO)
+// #if defined(METICULOUS_BACKLIGHT_PWM) || defined(METICULOUS_BACKLIGHT_GPIO)
 		backlight = <&backlight>;
-#endif
+// #endif
 		port@0 {
 			reg = <0>;
 			panel_in_dsi: endpoint {
@@ -425,14 +425,14 @@
 	pinctrl-0 = <&pinctrl_pwm1>;
 };
 
-#ifdef METICULOUS_BACKLIGHT_PWM
+// #ifdef METICULOUS_BACKLIGHT_PWM
 &pwm2 {
 	#pwm-cells = <3>;
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_mipi_dsi_en_pwm2>;
 };
-#endif
+// #endif
 
 &snvs_pwrkey {
 	status = "okay";
